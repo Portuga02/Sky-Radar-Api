@@ -1,58 +1,75 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# 🛰️ SkyRadar API — Monitoramento de Áreas de Risco (Recife)
 
 <p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
+  <img src="https://img.shields.io/badge/PHP-777BB4?style=for-the-badge&logo=php&logoColor=white" alt="PHP" />
+  <img src="https://img.shields.io/badge/Laravel-FF2D20?style=for-the-badge&logo=laravel&logoColor=white" alt="Laravel" />
+  <img src="https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white" alt="PostgreSQL" />
+  <img src="https://img.shields.io/badge/Clean_Architecture-🛡️-blue?style=for-the-badge" alt="Clean Architecture" />
 </p>
 
-## About Laravel
+## 📌 Sobre o Projeto
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+O **SkyRadar** é o braço de segurança e geolocalização do ecossistema *Sky*. Esta API foi desenvolvida para monitorar zonas de risco e pontos críticos de alagamento na cidade de Recife/PE. 
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+O projeto utiliza dados em tempo real para fornecer alertas e inteligência geográfica, visando mitigar os impactos de desastres naturais e auxiliar a população local.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## 🏗️ Arquitetura e Engenharia de Software
 
-## Learning Laravel
+Este projeto não é um simples CRUD. Ele foi desenhado sob os princípios da **Clean Architecture** e **SOLID**, garantindo que as regras de negócio sejam independentes de frameworks e bancos de dados.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+### Diferenciais Técnicos:
+* **Camada de Domínio Pura:** Entidades e regras de negócio isoladas.
+* **Data Transfer Objects (DTOs):** Utilizados rigorosamente para o tráfego de dados entre camadas, garantindo integridade e tipagem.
+* **Service Pattern:** Desacoplamento da lógica de negócio dos Controllers.
+* **Repository Pattern:** Abstração da camada de persistência para facilitar testes e trocas de infraestrutura.
 
-In addition, [Laracasts](https://laracasts.com) contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## 🛠️ Stack Tecnológica
 
-You can also watch bite-sized lessons with real-world projects on [Laravel Learn](https://laravel.com/learn), where you will be guided through building a Laravel application from scratch while learning PHP fundamentals.
+* **Linguagem:** PHP 8.2+
+* **Framework:** Laravel 11
+* **Banco de Dados:** PostgreSQL (com suporte a dados geoespaciais) / SQLite (Dev)
+* **Autenticação:** Laravel Sanctum (Pronta para SPAs e Mobile)
+* **Ambiente:** Railway / Docker
 
-## Agentic Development
+## 📂 Estrutura de Pastas (Clean Architecture)
 
-Laravel's predictable structure and conventions make it ideal for AI coding agents like Claude Code, Cursor, and GitHub Copilot. Install [Laravel Boost](https://laravel.com/docs/ai) to supercharge your AI workflow:
+```text
+app/
+├── Domain/           # Regras de negócio e Entidades
+├── Application/      # Casos de Uso e DTOs
+└── Infrastructure/   # Framework, Controllers e Repositories
 
-```bash
-composer require laravel/boost --dev
+🚀 Como Rodar o Projeto
+Clone o repositório:
 
-php artisan boost:install
-```
+    Bash
+    git clone [https://github.com/SEU_USUARIO/sky-radar-api.git](https://github.com/SEU_USUARIO/sky-radar-api.git)
+    Instale as dependências:
 
-Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
+Bash
+    composer install
+    Configure o arquivo .env:
 
-## Contributing
+Bash
+    cp .env.example .env
+    php artisan key:generate
+    Execute as migrations:
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+Bash
+    php artisan migrate
+    Inicie o servidor:
 
-## Code of Conduct
+Bash
+    php artisan serve
+    📅 Roadmap de Desenvolvimento
+    [x] Setup inicial do Laravel 11.
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+    [x] Estruturação das pastas de Clean Architecture.
 
-## Security Vulnerabilities
+    [ ] Implementação do CRUD de Áreas de Risco (RiskAreas).
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+    [ ] Integração com APIs climáticas (SkyCast PRO).
 
-## License
+    [ ] Sistema de notificações via WebSockets (Real-time).
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Desenvolvido por Sávio Gomes da Silva - Fullstack Developer & Arquiteto e Engenheiro de Software
