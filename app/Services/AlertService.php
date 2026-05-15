@@ -6,10 +6,7 @@ use App\DTOs\RiskAreaDTO;
 
 class AlertService
 {
-    /**
-     * Retorna a lista de áreas de risco (Mock migrado do Front-end).
-     * No futuro, este método fará a consulta real no banco de dados.
-     */
+
     public function getActiveAlerts()
     {
         return array(
