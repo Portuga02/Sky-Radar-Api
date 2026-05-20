@@ -12,7 +12,7 @@ class WeatherIntegrationService
         $areas = RiskArea::all();
 
         foreach ($areas as $area) {
-            // Pedimos a precipitação E a temperatura (temperature_2m) para o satélite
+
             $response = Http::withoutVerifying()->get("https://api.open-meteo.com/v1/forecast", array(
                 'latitude' => $area->lat,
                 'longitude' => $area->lng,
@@ -20,11 +20,11 @@ class WeatherIntegrationService
             ));
 
             if ($response->successful()) {
-                // Extraímos os dois valores do JSON da API
+
                 $chuva = $response->json('current.precipitation');
                 $temp = $response->json('current.temperature_2m');
 
-                // Nossa Regra de Negócio Tática
+
                 $novoNivel = 'green';
                 $descricao = "Vias liberadas. Chuva atual: {$chuva}mm.";
 
