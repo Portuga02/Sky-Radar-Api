@@ -7,25 +7,24 @@ use App\DTOs\RiskAreaDTO;
 
 class AlertService
 {
-    /**
-     * Busca os alertas reais no Banco de Dados e os converte para DTOs.
-     */
     public function getActiveAlerts()
     {
-        $riskAreas = RiskArea::all(); // 👈 Busca TUDO no banco de dados
-
+        $areas = RiskArea::all();
         $dtos = array();
 
-        foreach ($riskAreas as $area) {
+        foreach ($areas as $area) {
+            // Agora passamos a temperatura e a chuva para o DTO
             $dto = new RiskAreaDTO(
                 $area->id,
                 $area->name,
                 $area->lat,
                 $area->lng,
                 $area->level,
-                $area->description
+                $area->description,
+                $area->temperature,
+                $area->precipitation_mm
             );
-            array_push($dtos, $dto);
+            $dtos[] = $dto->toArray();
         }
 
         return $dtos;
