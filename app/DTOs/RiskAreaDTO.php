@@ -10,8 +10,10 @@ class RiskAreaDTO
     public $lng;
     public $level;
     public $desc;
+    public $temperature;
+    public $precipitation_mm;
 
-    public function __construct($id, $name, $lat, $lng, $level, $desc)
+    public function __construct($id, $name, $lat, $lng, $level, $desc, $temperature = null, $precipitation_mm = null)
     {
         $this->id = $id;
         $this->name = $name;
@@ -19,6 +21,8 @@ class RiskAreaDTO
         $this->lng = $lng;
         $this->level = $level;
         $this->desc = $desc;
+        $this->temperature = $temperature;
+        $this->precipitation_mm = $precipitation_mm;
     }
 
     public function toArray()
@@ -29,7 +33,9 @@ class RiskAreaDTO
             'lat'   => $this->lat,
             'lng'   => $this->lng,
             'level' => $this->level,
-            'desc'  => $this->desc
+            'desc'  => $this->desc,
+            'temperature' => $this->temperature,
+            'precipitation_mm' => $this->precipitation_mm
         );
     }
 }

@@ -7,5 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 class RiskArea extends Model
 {
 
-    protected $fillable = array('name', 'lat', 'lng', 'level', 'description');
+    protected $fillable = array('name',
+        'lat',
+        'lng',
+        'level',
+        'description',
+        'temperature',
+        'precipitation_mm');
 }
