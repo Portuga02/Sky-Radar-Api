@@ -7,7 +7,7 @@ use App\Services\WeatherIntegrationService;
 
 class SyncWeather extends Command
 {
-    // Esse é o comando que você vai digitar no terminal
+
     protected $signature = 'radar:sync';
 
     protected $description = 'Sincroniza os dados de chuva e temperatura reais com o satelite da Open-Meteo';
