@@ -34,8 +34,8 @@ class RiskAreaDTO
             'lng'   => $this->lng,
             'level' => $this->level,
             'desc'  => $this->desc,
-            'temperature' => $this->temperature,
-            'precipitation_mm' => $this->precipitation_mm
+            'temp' => $this->temperature,
+            'rain' => $this->precipitation_mm
         );
     }
 }

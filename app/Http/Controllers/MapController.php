@@ -15,16 +15,12 @@ class MapController extends BaseController
         $this->alertService = $alertService;
     }
 
-    public function getAlerts()
+ public function getAlerts()
     {
+        // 1. Pega os dados já formatados do nosso serviço
         $alerts = $this->alertService->getActiveAlerts();
 
-        // Convertendo a lista de DTOs para um formato que vira JSON perfeitamente
-        $formattedAlerts = array();
-        foreach ($alerts as $alert) {
-            array_push($formattedAlerts, $alert->toArray());
-        }
-
-        return response()->json($formattedAlerts);
+        // 2. Devolve direto como JSON, sem tentar converter de novo
+        return response()->json($alerts);
     }
 }
