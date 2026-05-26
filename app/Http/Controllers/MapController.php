@@ -9,18 +9,15 @@ class MapController extends BaseController
 {
     protected $alertService;
 
-    // Injeção do nosso Serviço
     public function __construct(AlertService $alertService)
     {
         $this->alertService = $alertService;
     }
 
- public function getAlerts()
+    public function getAlerts()
     {
-        // 1. Pega os dados já formatados do nosso serviço
-        $alerts = $this->alertService->getActiveAlerts();
+        $alertas = \App\Models\RiskArea::all();
 
-        // 2. Devolve direto como JSON, sem tentar converter de novo
-        return response()->json($alerts);
+        return response()->json($alertas);
     }
 }
