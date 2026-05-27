@@ -7,3 +7,4 @@ Route::get('/alerts', array(MapController::class, 'getAlerts'));
 
 
 Route::get('/weather/{lat}/{lon}', [WeatherController::class, 'getWeather']);
+Route::get('/search/{query}', [WeatherController::class, 'searchLocation']);
