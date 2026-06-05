@@ -21,19 +21,33 @@ class WeatherController extends Controller
 
         return response()->json($response->json(), $response->status());
     }
-
-    public function searchLocation($query)
+public function searchLocation($query)
     {
-        $response = Http::withHeaders([
+        try {
 
-            'User-Agent' => 'SkyRadarApp/1.0 (saviogomesdasilvadev@gmail.com)'
-        ])->get("https://nominatim.openstreetmap.org/search", [
-            'format'         => 'json',
-            'addressdetails' => 1,
-            'limit'          => 5,
-            'q'              => $query
-        ]);
+            $response = \Illuminate\Support\Facades\Http::withoutVerifying()
+                ->withHeaders(array(
+                    'User-Agent' => 'SkyRadar/1.0'
+                ))
+                ->get('https://nominatim.openstreetmap.org/search', array(
+                    'q' => $query,
+                    'format' => 'json',
+                    'addressdetails' => 1,
+                    'limit' => 5
+                ));
 
-        return response()->json($response->json(), $response->status());
+            if ($response->successful()) {
+                return response()->json($response->json());
+            }
+
+            return response()->json(array('error' => 'Falha ao buscar no OpenStreetMap'), 500);
+
+        } catch (\Exception $e) {
+
+            return response()->json(array(
+                'error' => 'Erro interno do servidor',
+                'message' => $e->getMessage()
+            ), 500);
+        }
     }
 }
